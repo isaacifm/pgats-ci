@@ -9,14 +9,10 @@ jobs:
     steps:
 
       - checkout
-
-      - run:
-          name: Instalando Yarn
-          command: npm install -g yarn
-
+      
       - run:
           name: Instalando dependências
-          command: yarn
+          command: npm ci
 
       - run:
           name: Instalando Browsers Playwright
@@ -24,7 +20,7 @@ jobs:
 
       - run:
           name: Executando testes
-          command: yarn run e2e
+          command: npm run e2e
 
       - store_artifacts:
           path: playwright-report
