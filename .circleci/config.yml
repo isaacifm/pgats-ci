@@ -11,8 +11,15 @@ jobs:
       - checkout
       
       - run:
+          name: Habilitar Corepack e Yarn
+          command: |
+            corepack enable
+            corepack prepare yarn@stable --activate
+            yarn --version
+
+      - run:
           name: Instalando dependências
-          command: npm ci
+          command: yarn install
 
       - run:
           name: Instalando Browsers Playwright
@@ -20,7 +27,7 @@ jobs:
 
       - run:
           name: Executando testes
-          command: npm run e2e
+          command: yarn e2e
 
       - store_artifacts:
           path: playwright-report
