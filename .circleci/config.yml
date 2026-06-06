@@ -11,23 +11,16 @@ jobs:
       - checkout
       
       - run:
-          name: Habilitar Corepack e Yarn
-          command: |
-            corepack enable
-            corepack prepare yarn@stable --activate
-            yarn --version
+          name: Instalar dependências
+          command: npm install --legacy-peer-deps
 
       - run:
-          name: Instalando dependências
-          command: yarn install
-
-      - run:
-          name: Instalando Browsers Playwright
+          name: Instalar Browsers
           command: npx playwright install --with-deps
 
       - run:
-          name: Executando testes
-          command: yarn e2e
+          name: Executar testes
+          command: npm run e2e
 
       - store_artifacts:
           path: playwright-report
